@@ -1,0 +1,16 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining routes for Home, Gallery, Customize, and Contact pages with a shared Layout wrapper.",
+  "frontend/src/components/Layout.tsx": "Global layout component with responsive header navigation (logo, nav links, mobile menu) and footer with branding and caffeine.ai attribution.",
+  "frontend/src/pages/HomePage.tsx": "Home page with hero section featuring banner image, CTA buttons to gallery/customize, how-it-works section, and call-to-action section.",
+  "frontend/src/pages/GalleryPage.tsx": "Gallery page displaying a responsive grid of 8 wedding invitation card designs with click-to-preview functionality using a dialog.",
+  "frontend/src/pages/CustomizePage.tsx": "Customization form page collecting wedding details (bride/groom names, date, venue, requirements) with optional design selection and backend submission.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page prominently displaying Gharpic designer owner information with click-to-call phone number (9824469590) and what-to-expect section.",
+  "frontend/src/components/InvitationPreviewDialog.tsx": "Reusable dialog component for displaying full-size invitation preview with customize CTA button.",
+  "frontend/src/components/DesignSelect.tsx": "Select dropdown component for choosing an invitation design from the gallery catalog.",
+  "frontend/src/components/SubmissionStatus.tsx": "Alert component displaying success or error messages after form submission.",
+  "frontend/src/data/invitations.ts": "Static data catalog of 8 wedding invitation designs with IDs, names, styles, and image paths.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for submitting customization requests to backend and fetching all requests.",
+  "frontend/src/index.css": "Global styles with warm neutral OKLCH color palette (cream/rose/amber tones) for light and dark modes, avoiding blue/purple dominance.",
+  "frontend/tailwind.config.js": "Tailwind configuration with Playfair Display serif font for headings, Inter for body text, and extended theme tokens matching the wedding aesthetic.",
+  "frontend/index.html": "HTML entry point with updated title and Google Fonts preconnect for Inter and Playfair Display fonts."
+}

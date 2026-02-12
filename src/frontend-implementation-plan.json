@@ -1,0 +1,254 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Weeding Brochure — wedding invitation gallery, customization requests, and contact page (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add global branding/layout for “Weeding Brochure” with responsive header/nav + footer and consistent typography/spacing.",
+      "acceptanceCriteria": [
+        "Site title/branding displays “Weeding Brochure” in the header and in the document title",
+        "Layout is responsive for mobile and desktop",
+        "Header includes navigation links to at least: Gallery, Customize, Contact"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the base document <title> to “Weeding Brochure” (English) and ensure the HTML lang remains English."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the application shell and routing for Home, Gallery, Customize, and Contact, wiring navigation and per-route document titles. Use the build-template-react routing approach if present; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a responsive global layout with header/nav (links: Gallery, Customize, Contact) and footer, displaying “Weeding Brochure” branding and logo. Use shadcn-ui primitives (e.g., Button) where appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles/Tailwind layers to enforce consistent typography, spacing, and base element styling across pages (English-only UI text)."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure App is correctly imported from the created frontend/src/App.tsx and that global styles (frontend/src/index.css) are applied."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build a gallery/catalog page showing invitation designs with thumbnails and a larger preview on selection (at least 8 static designs).",
+      "acceptanceCriteria": [
+        "Gallery page shows a grid/list of invitation designs with thumbnails",
+        "Clicking/tapping a design opens a larger preview (modal or dedicated detail section/page)",
+        "At least 8 sample designs are available using static assets"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/invitations.ts",
+          "operation": "create",
+          "description": "Add a static catalog of at least 8 invitation designs (id, design name, image paths) referencing generated assets under frontend/public/assets/generated. Keep all user-facing text in English."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "create",
+          "description": "Implement the Gallery page rendering a responsive grid/list of invitation cards with thumbnail images and design names. Use shadcn-ui Card and Dialog (for preview modal) to support consistent UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/InvitationPreviewDialog.tsx",
+          "operation": "create",
+          "description": "Create a reusable preview modal/dialog that displays the selected design larger with its name/identifier. Use shadcn-ui Dialog for accessibility and behavior; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Gallery page into the app routing and ensure it is reachable from header navigation (no orphan pages)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create a Customize flow with an English form to submit invitation details and optional selected design association.",
+      "acceptanceCriteria": [
+        "Customize page contains a form with fields for key wedding invitation details and a free-text requirements field",
+        "Customer can optionally choose a design from the gallery to associate with the request",
+        "All user-facing form labels, buttons, and validation messages are in English"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CustomizePage.tsx",
+          "operation": "create",
+          "description": "Implement the Customize page with an English-language form (names, date, venue, and a free-text requirements/notes field) and an optional design selector sourced from the static catalog. Use shadcn-ui Input/Textarea/Button where appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/DesignSelect.tsx",
+          "operation": "create",
+          "description": "Add a small reusable design selector UI (optional selection) to associate a request with a gallery design; uses the static catalog list. Use shadcn-ui form primitives if available; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Customize page into routing and header navigation, ensuring English document title and consistent layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Submit customization form data to the backend and display clear success/error states while preserving form input on failure.",
+      "acceptanceCriteria": [
+        "Submitting the form calls the backend and creates a stored request",
+        "On success, the UI shows a confirmation message and clears or resets the form",
+        "On failure, the UI shows an English error message and does not lose the entered data"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/services/customizationRequests.ts",
+          "operation": "create",
+          "description": "Create a small frontend service that calls the backend canister using the core-infrastructure backend connection configuration to submit customization requests (using backendInterface.submitRequest from frontend/src/backend.d.ts). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CustomizePage.tsx",
+          "operation": "modify",
+          "description": "Connect form submission to the customizationRequests service; show an English success confirmation state on completion (and reset/clear the form), and show an English error message on failure while retaining entered values. Use shadcn-ui alert/toast patterns if present; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/SubmissionStatus.tsx",
+          "operation": "create",
+          "description": "Add a small UI component to render success and error states consistently for the Customize flow (English-only). Use shadcn-ui styling primitives if available; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create a Contact page for hardcopy requests showing “Gharpic designer owner” and phone number with click-to-call support.",
+      "acceptanceCriteria": [
+        "Contact page clearly shows: “Gharpic designer owner” and phone number “9824469590”",
+        "Phone number is a tel: link (click-to-call on supported devices)",
+        "Contact page is accessible from the header navigation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create the Contact page content (English) prominently showing “Gharpic designer owner” and the phone number “9824469590” as a tel: link for click-to-call on mobile."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Contact page into routing and ensure it is accessible via the header navigation links."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a cohesive wedding-brand theme (avoid blue/purple as dominant colors) and add a home hero section with CTA to the gallery.",
+      "acceptanceCriteria": [
+        "Theme is consistent across Gallery, Customize, and Contact pages",
+        "Primary palette avoids blue & purple as the dominant colors",
+        "Home page includes a hero section introducing wedding invitation cards and a call-to-action to view the gallery"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Implement the Home page with a hero section introducing wedding invitation cards (English) and a prominent call-to-action that navigates to the Gallery. Render the generated hero banner image from frontend/public/assets/generated/weeding-brochure-hero.dim_1600x700.png."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Home page into routing as the default route and ensure hero CTA links to Gallery; keep navigation consistent across pages."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define a warm, neutral wedding theme via CSS variables/Tailwind base styles (e.g., cream/blush/gold/sage accents) ensuring blue & purple are not dominant, and apply consistent styling to cards, buttons, and form elements."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend Tailwind theme tokens (using existing CSS variable strategy) to support the chosen warm neutral palette and consistent component styling across the site."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add and render the provided generated images as static frontend assets for the home hero and gallery (no backend image routing).",
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated",
+        "Gallery uses these static assets for thumbnails/previews",
+        "Home hero uses a generated banner image"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/weeding-brochure-hero.dim_1600x700.png",
+          "operation": "create",
+          "description": "Add the generated hero banner image as a static asset at the exact path frontend/public/assets/generated/weeding-brochure-hero.dim_1600x700.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/weeding-brochure-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated wordmark/logo image as a static asset at the exact path frontend/public/assets/generated/weeding-brochure-logo.dim_512x512.png for use in header branding."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-01.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-01.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-02.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-02.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-03.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-03.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-04.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-04.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-05.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-05.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-06.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-06.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-07.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-07.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/public/assets/generated/invitation-08.dim_1200x800.png",
+          "operation": "create",
+          "description": "Add the generated invitation image asset at frontend/public/assets/generated/invitation-08.dim_1200x800.png."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Ensure the Home hero renders the static banner image from frontend/public/assets/generated/weeding-brochure-hero.dim_1600x700.png (no backend involvement)."
+        },
+        {
+          "path": "frontend/src/pages/GalleryPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the Gallery thumbnails/previews render the static invitation images from frontend/public/assets/generated/invitation-01.dim_1200x800.png through frontend/public/assets/generated/invitation-08.dim_1200x800.png (no backend involvement)."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "modify",
+          "description": "Render the static logo from frontend/public/assets/generated/weeding-brochure-logo.dim_512x512.png in the header branding area."
+        }
+      ]
+    }
+  ]
+}

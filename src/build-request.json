@@ -1,0 +1,176 @@
+{
+  "kind": "build_request",
+  "title": "Weeding Brochure: Wedding invitation gallery, customization requests, and contact for hardcopy",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Set up the website branding and global layout for the site name “Weeding Brochure”, including a responsive header/nav, footer, and consistent typography and spacing across all pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "the website name is weeding brochure"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Site title/branding displays “Weeding Brochure” in the header and in the document title",
+        "Layout is responsive for mobile and desktop",
+        "Header includes navigation links to at least: Gallery, Customize, Contact"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement an invitation card gallery/catalog page that displays wedding invitation card images with basic metadata (e.g., design name) and supports viewing a larger preview of a selected design.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "weeding invitation cards with images which customer also seen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gallery page shows a grid/list of invitation designs with thumbnails",
+        "Clicking/tapping a design opens a larger preview (modal or dedicated detail section/page)",
+        "At least 8 sample designs are available using static assets"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a “Customize” flow where a customer can select a design and submit their customization requirements (e.g., names, date, venue, additional notes) using an English-language form.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "customised their own weeding invitation cards with their requirements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Customize page contains a form with fields for key wedding invitation details and a free-text requirements field",
+        "Customer can optionally choose a design from the gallery to associate with the request",
+        "All user-facing form labels, buttons, and validation messages are in English"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Persist submitted customization requests in the Motoko backend so that requests are not lost on page refresh, including timestamp and the selected design identifier (if any).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "customised their own weeding invitation cards with their requirements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes methods to create and list customization requests",
+        "A created request includes: createdAt timestamp, customer-provided fields, and optional selected design id/name",
+        "Requests remain available after reload/reopen (stable storage)"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Connect the frontend customization form submission to the backend persistence API and show a clear submission success state and error state.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the form calls the backend and creates a stored request",
+        "On success, the UI shows a confirmation message and clears or resets the form",
+        "On failure, the UI shows an English error message and does not lose the entered data"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Create a Contact section/page for hardcopy requests that prominently displays the Gharpic designer owner contact phone number “9824469590” and includes a click-to-call link on mobile devices.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "also want a hardcopy then contact with the gharpic designer owner the contact number is 9824469590"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact page clearly shows: “Gharpic designer owner” and phone number “9824469590”",
+        "Phone number is a tel: link (click-to-call on supported devices)",
+        "Contact page is accessible from the header navigation"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a coherent, attractive visual theme for a wedding invitation brand (not using blue & purple as the primary palette), including a hero section on the home page and consistent styling of cards, buttons, and form elements.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Create a attractive website of weeding invitation cards"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Theme is consistent across Gallery, Customize, and Contact pages",
+        "Primary palette avoids blue & purple as the dominant colors",
+        "Home page includes a hero section introducing wedding invitation cards and a call-to-action to view the gallery"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add the generated image assets to the frontend as static files and render them in the UI (home hero and gallery) without routing image delivery through the backend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "with images"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are stored under frontend/public/assets/generated",
+        "Gallery uses these static assets for thumbnails/previews",
+        "Home hero uses a generated banner image"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for all user-facing text.",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files in frontend immutablePaths (compose existing UI components instead).",
+    "Do not use external databases or third-party authentication providers (Internet Identity is the only supported auth, and is not required unless explicitly added later)."
+  ],
+  "nonGoals": [
+    "Online payments or checkout for invitation orders",
+    "Real-time chat or messaging with the designer",
+    "Automatic printing/shipping fulfillment workflows",
+    "Third-party email/SMS integrations",
+    "Admin dashboard unless explicitly requested later"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Wedding invitation website hero banner with elegant floral border on a warm neutral background (weeding-brochure-hero.dim_1600x700.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-01.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-02.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-03.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-04.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-05.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-06.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-07.dim_1200x800.png)",
+      "Set of 8 distinct wedding invitation card design images with varied styles (minimal, floral, traditional, modern) (invitation-08.dim_1200x800.png)",
+      "Simple elegant wordmark logo in a warm neutral palette (weeding-brochure-logo.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}

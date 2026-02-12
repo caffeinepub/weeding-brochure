@@ -1,0 +1,69 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-12T01:19:25.747Z",
+  "summary": "Frontend implements routing, layout/branding, home hero + CTA, gallery grid with modal preview, customize form with optional design selection, and contact page with click-to-call. Backend implements request submission and querying, but does not use stable storage and does not store structured customer fields as specified. Generated image assets are referenced in code but not evidenced as added under the required public assets path.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Persist submitted customization requests in the Motoko backend so that requests are not lost on page refresh, including timestamp and the selected design identifier (if any). Backend exposes methods to create and list customization requests; request includes createdAt timestamp, customer-provided fields, and optional selected design id/name; uses stable storage.",
+      "reason": "backend/main.mo stores requests in an in-memory Map without any stable variable or upgrade hooks, so data will be lost on canister upgrade/reinstall and is not evidenced as stable. Also, only a single free-form `details : Text` is stored rather than the individual customer-provided fields (names/date/venue/notes) described in the requirement.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "requirement": "Add the generated image assets to the frontend as static files under frontend/public/assets/generated and render them in the UI (home hero and gallery) without routing image delivery through the backend.",
+      "reason": "UI references images at /assets/generated/... but the diff summary does not show added files under frontend/public/assets/generated; only 2 added files were omitted due to limits, which is insufficient evidence for the full required set (hero + logo + 8 invitations).",
+      "evidence": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/data/invitations.ts"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication scaffolding (provider and actor creation dependent on identity) added even though authentication was explicitly noted as not required unless added later.",
+      "reason": "BuildRequest states Internet Identity is the only supported auth and is not required unless explicitly added later, but the diff adds `InternetIdentityProvider`, `useInternetIdentity`, and identity-aware actor creation.",
+      "evidence": [
+        "frontend/src/main.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Footer attribution link to caffeine.ai.",
+      "reason": "Not requested in any requirement or acceptance criteria; adds external link and branding attribution.",
+      "evidence": [
+        "frontend/src/components/Layout.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/DesignSelect.tsx",
+    "frontend/src/components/InvitationPreviewDialog.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/SubmissionStatus.tsx",
+    "frontend/src/data/invitations.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/CustomizePage.tsx",
+    "frontend/src/pages/GalleryPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

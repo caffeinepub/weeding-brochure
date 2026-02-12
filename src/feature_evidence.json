@@ -1,0 +1,147 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-set-up-the-website-branding-and-global-layout-for-the-site-name-weeding-brochure-including-a-responsive-header-nav-footer-and-consistent-typography-and-spacing-across-all-pages",
+      "featureTitle": "Set up the website branding and global layout for the site name “Weeding Brochure”, including a responsive header/nav, footer, and consistent typography and spacing across all pages.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/src/main.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-an-invitation-card-gallery-catalog-page-that-displays-wedding-invitation-card-images-with-basic-metadata-e-g-design-name-and-supports-viewing-a-larger-preview-of-a-selected-design",
+      "featureTitle": "Implement an invitation card gallery/catalog page that displays wedding invitation card images with basic metadata (e.g., design name) and supports viewing a larger preview of a selected design.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/InvitationPreviewDialog.tsx",
+        "frontend/src/data/invitations.ts",
+        "frontend/src/pages/GalleryPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-customize-flow-where-a-customer-can-select-a-design-and-submit-their-customization-requirements-e-g-names-date-venue-additional-notes-using-an-english-language-form",
+      "featureTitle": "Add a “Customize” flow where a customer can select a design and submit their customization requirements (e.g., names, date, venue, additional notes) using an English-language form.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/DesignSelect.tsx",
+        "frontend/src/pages/CustomizePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-connect-the-frontend-customization-form-submission-to-the-backend-persistence-api-and-show-a-clear-submission-success-state-and-error-state",
+      "featureTitle": "Connect the frontend customization form submission to the backend persistence API and show a clear submission success state and error state.",
+      "files": [
+        "frontend/src/components/SubmissionStatus.tsx",
+        "frontend/src/pages/CustomizePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-contact-section-page-for-hardcopy-requests-that-prominently-displays-the-gharpic-designer-owner-contact-phone-number-9824469590-and-includes-a-click-to-call-link-on-mobile-devices",
+      "featureTitle": "Create a Contact section/page for hardcopy requests that prominently displays the Gharpic designer owner contact phone number “9824469590” and includes a click-to-call link on mobile devices.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/ContactPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-coherent-attractive-visual-theme-for-a-wedding-invitation-brand-not-using-blue-purple-as-the-primary-palette-including-a-hero-section-on-the-home-page-and-consistent-styling-of-cards-buttons-and-form-elements",
+      "featureTitle": "Apply a coherent, attractive visual theme for a wedding invitation brand (not using blue & purple as the primary palette), including a hero section on the home page and consistent styling of cards, buttons, and form elements.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-the-generated-image-assets-to-the-frontend-as-static-files-and-render-them-in-the-ui-home-hero-and-gallery-without-routing-image-delivery-through-the-backend",
+      "featureTitle": "Add the generated image assets to the frontend as static files and render them in the UI (home hero and gallery) without routing image delivery through the backend.",
+      "files": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/pages/GalleryPage.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
